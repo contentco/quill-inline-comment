@@ -1,0 +1,24 @@
+{
+  "name": "quill-inline-comment",
+  "version": "0.0.1",
+  "description": "Quill Extension for Inline Comment Like Medium",
+  "main": "webpack.config.js",
+  "authors": [
+    "contentco"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "content",
+    "emoji",
+    "quill",
+    "editor"
+  ],
+  "homepage": "https://github.com/contentco/quill-inline-comment",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

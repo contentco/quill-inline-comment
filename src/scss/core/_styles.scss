@@ -1,0 +1,17 @@
+@import 'core/variables'; /* sass-loader doesnt like absolute imports*/
+body {
+  background: $white;
+}
+#quill-editor {
+    position: relative;
+}
+.mention {
+    color: $blue;
+}
+
+
+
+    
+
+
+
