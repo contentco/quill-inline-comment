@@ -61,6 +61,7 @@ class InlineComment {
         if (elementExists) {
             this.container = elementExists;
             this.container.style.display = "block";
+            document.querySelector('.commentText').value = '';
         }
         else{
             this.container  = document.createElement('div');
@@ -73,7 +74,7 @@ class InlineComment {
 
         this.container.style.left = (atSignBounds.left)+ "px";
         this.container.style.top = 10 + atSignBounds.top + atSignBounds.height + "px";
-        
+        document.querySelector('.commentText').focus();
         
         let inlineCancel = document.querySelector('.inline-canecl');
         let commentToolTip = document.querySelector('.inline-comment');
@@ -89,7 +90,6 @@ class InlineComment {
             quill.deleteText(range.index, text.length, Quill.sources.USER);
             quill.insertText(range.index, text, "comment", commentText, Quill.sources.USER);
             quill.setSelection(range.index + text.length + 1, 0, Quill.sources.SILENT);
-            document.querySelector('.commentText').value = '';
         });
     }
 }

@@ -46,8 +46,8 @@
             </div>
         </div>
         <script src="../node_modules/quill/dist/quill.js"></script>
-        <!--<script src="../src/module-inline-comment.js"></script>-->
-        <script src="../dist/quill-inline-comment.js"></script>
+        <script src="../src/module-inline-comment.js"></script>
+        <!--<script src="../dist/quill-inline-comment.js"></script>-->
         <script type="text/javascript">
           var toolbarOptions = {
             container: [
@@ -76,6 +76,8 @@
               placeholder: 'Compose an epic...',
               theme: 'snow',
           });
+        var content = '<p>In this stage, we are going to set up <span data-comment="redux" class="annotation">Redux</span> for state management of our application. This involves the three main in Redux: actions, reducers and the store. Make sure to get the correct files from the download section.</p>';
+        quill.pasteHTML(content);
         setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
         setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
         </script>
