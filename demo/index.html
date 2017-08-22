@@ -25,7 +25,7 @@
             text-align: right;
           }
           .annotation{
-            color: red;
+            background: #ff0;
           }
         </style>
     </head>
@@ -76,7 +76,7 @@
               placeholder: 'Compose an epic...',
               theme: 'snow',
           });
-        var content = '<p>In this stage, we are going to set up <span data-comment="redux" class="annotation">Redux</span> for state management of our application. This involves the three main in Redux: actions, reducers and the store. Make sure to get the correct files from the download section.</p>';
+        var content = '<p>In this stage, we are going to set up Redux for state management of our application. This involves the three main in Redux: actions, reducers and the store. Make sure to get the correct files from the download section.</p>';
         quill.pasteHTML(content);
         setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
         setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
