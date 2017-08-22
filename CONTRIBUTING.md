@@ -2,7 +2,7 @@
 
 ## Building
 
-To build __quill-emoji__, run the following command:
+To build __quill-inline-comment__, run the following command:
 
 ```npm run build```
 
