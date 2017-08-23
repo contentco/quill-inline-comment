@@ -76,7 +76,7 @@
               placeholder: 'Compose an epic...',
               theme: 'snow',
           });
-        var content = '<p><span class="annotation" data-comment="ice mountain">testing</span> another testing</p>';
+        var content = '<p><span style="color: rgba(0, 0, 0, 0.8);">You can learn, have, or be anything if you are willing to <span class="annotation" data-comment="should worth proce" data-id="7p7ahkwrnac">pay the price.</span></span></p>';
         quill.pasteHTML(content);
         setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
         setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);

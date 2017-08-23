@@ -1,13 +1,17 @@
 let Inline = Quill.import('blots/inline');
 
 class CommentBlot extends Inline {
-        static create(label) {
+        static create(commentText) {
             const node = super.create();
-            node.dataset.comment = label;
+            node.dataset.comment = commentText.comment;
+            if (commentText.id) {
+                node.dataset.id = commentText.id;
+            }
             return node;
         }
         static formats(node) {
-            return node.dataset.comment;
+            //console.log('node',node.dataset);
+            return node.dataset;
         }
         format(name, value) {
             if (name === "comment" && value) {
@@ -87,10 +91,18 @@ class InlineComment {
         inlineSend.addEventListener("click", () => this.addComment);
 
         inlineSend.addEventListener('click',function(){ 
+            //var commentId = Math.random().toString(36).slice(2);
+            const commentObj = {};
+
             let commentText = document.querySelector('.commentText').value;
+            commentObj.comment = commentText;
+            if (typeof(commentId) !== 'undefined') {
+                commentObj.id= commentId;
+            }
+            
             commentToolTip.style.display    = "none";
             quill.deleteText(range.index, text.length, Quill.sources.USER);
-            quill.insertText(range.index, text, "comment", commentText, Quill.sources.USER);
+            quill.insertText(range.index, text, "comment", commentObj, Quill.sources.USER);
             quill.setSelection(range.index + text.length + 1, 0, Quill.sources.SILENT);
         });
     }
