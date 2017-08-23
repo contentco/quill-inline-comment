@@ -1,34 +1,32 @@
 let Inline = Quill.import('blots/inline');
 
 class CommentBlot extends Inline {
-    static create(value) {
-        let node = super.create();
-        if (typeof(value) == 'string') {
-            node.dataset.comment = value;
-            node.classList.add("annotation");
+        static create(label) {
+            const node = super.create();
+            node.dataset.comment = label;
+            return node;
         }
-        return node;
-      }
+        static formats(node) {
+            return node.dataset.comment;
+        }
+        format(name, value) {
+            if (name === "comment" && value) {
+                this.domNode.dataset.label = value;
+            } else {
+                super.format(name, value);
+            }
+        }
 
-    static formats(node) {
-        let format = {};
-        if (node.hasAttribute('class')) {
-          format.class = node.getAttribute('class');
+        formats() {
+            const formats = super.formats();
+            formats['comment'] = CommentBlot.formats(this.domNode);
+            return formats;
         }
-        return format;
     }
 
-    static value(node) {
-        return node;
-    }
-
-    format(name, value) {
-        super.format(name, value);
-    } 
-}
-
-CommentBlot.blotName = 'comment';
-CommentBlot.tagName = 'SPAN';
+CommentBlot.blotName = "comment";
+CommentBlot.tagName = "SPAN";
+CommentBlot.className = "annotation";
 
 Quill.register({
     'formats/comment': CommentBlot
@@ -41,7 +39,7 @@ class InlineComment {
         if (typeof this.toolbar != 'undefined')
             this.toolbar.addHandler('comment', this.showCommentBox);
         
-        var commentBtns = document.getElementsByClassName('ql-comment');
+        let commentBtns = document.getElementsByClassName('ql-comment');
         if (commentBtns) { 
             [].slice.call( commentBtns ).forEach(function ( commentBtn ) {
                 commentBtn.innerHTML = 'Comment';
@@ -50,8 +48,9 @@ class InlineComment {
     }
 
     showCommentBox(){
-        let range = quill.getSelection();
-        let text = quill.getText(range.index, range.length);
+        let quill = this.quill;
+        let range = this.quill.getSelection();
+        let text = this.quill.getText(range.index, range.length);
         if (text.length < 1) {
             return;
         }
@@ -83,8 +82,11 @@ class InlineComment {
             commentToolTip.style.display    = "none";
         });
 
-        let emojiFilter = document.querySelector('.inline-send');
-        emojiFilter.addEventListener('click',function(){ 
+        let inlineSend = document.querySelector('.inline-send');
+
+        inlineSend.addEventListener("click", () => this.addComment);
+
+        inlineSend.addEventListener('click',function(){ 
             let commentText = document.querySelector('.commentText').value;
             commentToolTip.style.display    = "none";
             quill.deleteText(range.index, text.length, Quill.sources.USER);
