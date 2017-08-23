@@ -46,7 +46,7 @@ class InlineComment {
         let commentBtns = document.getElementsByClassName('ql-comment');
         if (commentBtns) { 
             [].slice.call( commentBtns ).forEach(function ( commentBtn ) {
-                commentBtn.innerHTML = 'Comment';
+                commentBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="#6F6D70" stroke-width="4" stroke-miterlimit="10" d="M51.7 71.8c-8 0-11.7-4-16-2.3-4.2 2-12.3 2.2-10.3.2 2.4-2.4 5-5.3 5.3-8.6.4-3-1.5-7-1.5-11.4C29.2 37 39.2 27 51.7 27 64 27 74.2 37 74.2 49.3S64.2 72 51.7 72z"/></svg>';
             });
         };
     }
