@@ -66,14 +66,14 @@ function createCommentDialog(quill) {
         return;
     }
     const atSignBounds = quill.getBounds(range.index);
-    this.container  = document.createElement('div');
-    this.container.id =  'inline-comment';
-    this.container.classList.add('inline-comment');
-    this.quill.container.appendChild(this.container);
-    this.container.style.position   = "absolute";
-    this.container.innerHTML = '<textarea class="commentText" placeholder="Type your comment"></textarea><div class="inline-comment-bottom"><span class="inline-send">Send</span> <span class="inline-canecl">Cancel</span></div>';
-    this.container.style.left = (atSignBounds.left)+ "px";
-    this.container.style.top = 10 + atSignBounds.top + atSignBounds.height + "px";
+    let container  = document.createElement('div');
+    container.id =  'inline-comment';
+    container.classList.add('inline-comment');
+    quill.container.appendChild(container);
+    container.style.position   = "absolute";
+    container.innerHTML = '<textarea class="commentText" placeholder="Type your comment"></textarea><div class="inline-comment-bottom"><span class="inline-send">Send</span> <span class="inline-canecl">Cancel</span></div>';
+    container.style.left = (atSignBounds.left)+ "px";
+    container.style.top = 10 + atSignBounds.top + atSignBounds.height + "px";
     document.querySelector('.commentText').focus();
 
     let inlineCancel = document.querySelector('.inline-canecl');
