@@ -76,7 +76,7 @@
               placeholder: 'Compose an epic...',
               theme: 'snow',
           });
-        var content = '<p>You can learn, have, or be anything if you are willing to</p>';
+        var content = '<p>You can learn, have, or be anything if you are <span class="annotation" data-comment="willing" data-id="1" data-resolved="resolved">willing</span> to</p>';
         quill.pasteHTML(content);
         setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
         setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);

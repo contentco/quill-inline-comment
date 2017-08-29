@@ -7,7 +7,9 @@ class CommentBlot extends Inline {
         if (commentText.id) {
             node.dataset.id = commentText.id;
         }
-        //node.setAttribute('contenteditable', false);
+        if (commentText.resolved) {
+            node.dataset.resolved = commentText.resolved;
+        }
 
         return node;
     }
@@ -86,16 +88,18 @@ function createCommentDialog(quill) {
     let inlineSend = document.querySelector('.inline-send');
 
     inlineSend.addEventListener('click',function(){
+        // var commentId = 1;
+        // var commentStatus = 'resolved';
         const commentObj = {};
         let commentText = document.querySelector('.commentText').value;
         commentObj.comment = commentText;
         if (typeof(commentId) !== 'undefined') {
             commentObj.id= commentId;
         }
+        if (typeof(commentStatus) !== 'undefined') {
+            commentObj.resolved= commentStatus;
+        }
         commentToolTip.remove();
-        // quill.deleteText(range.index, text.length, Quill.sources.USER);
-        // quill.insertText(range.index, text, "comment", commentObj, Quill.sources.USER);
-        // quill.setSelection(range.index + text.length + 1, 0, Quill.sources.SILENT);
         quill.format('comment', commentObj);
     });
     
