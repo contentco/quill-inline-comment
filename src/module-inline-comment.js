@@ -40,7 +40,7 @@ class InlineComment {
         var commentBtns = document.getElementsByClassName('ql-comment');
         if (commentBtns) { 
             [].slice.call( commentBtns ).forEach(function ( commentBtn ) {
-                commentBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path fill="none" stroke="#6F6D70" stroke-width="4" stroke-miterlimit="10" d="M51.7 71.8c-8 0-11.7-4-16-2.3-4.2 2-12.3 2.2-10.3.2 2.4-2.4 5-5.3 5.3-8.6.4-3-1.5-7-1.5-11.4C29.2 37 39.2 27 51.7 27 64 27 74.2 37 74.2 49.3S64.2 72 51.7 72z"/></svg>';
+                commentBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16"><g fill="none" fill-rule="evenodd"><path fill="#444" fill-rule="nonzero" d="M9.92 11H13c1.66 0 3-1.36 3-3V5c0-1.66-1.34-3-3-3H5C3.34 2 2 3.34 2 5v3c0 1.64 1.34 3 3 3h1.44l.63 1.88 2.85-1.9zM5 0h8c2.76 0 5 2.24 5 5v3c0 2.75-2.24 5-5 5h-2.47L7.1 15.26c-.47.3-1.1.2-1.4-.27-.05-.1-.08-.18-.1-.26L5 13c-2.76 0-5-2.25-5-5V5c0-2.76 2.24-5 5-5z"/><path stroke="#444" stroke-width="2" d="M5.37 5H13M5.37 8H10" stroke-linecap="round" stroke-linejoin="round"/></g></svg>';
             });
         };
     }
@@ -84,13 +84,13 @@ function createCommentDialog(quill) {
     quill.container.appendChild(container);
     quill.container.appendChild(containerMask);
     container.style.position   = "absolute";
-    container.innerHTML = '<textarea class="commentText" placeholder="Type your comment"></textarea><div class="inline-comment-bottom"><span class="inline-send">Send</span> <span class="inline-canecl">Cancel</span></div>';
+    container.innerHTML = '<textarea class="commentText" placeholder="Type your comment"></textarea><div class="inline-comment-bottom"><span class="inline-cancel">Cancel</span> <span class="inline-send">Send</span> </div>';
     container.style.left = (atSignBounds.left)+ "px";
     container.style.top = 10 + atSignBounds.top + atSignBounds.height + "px";
     container.style.zIndex = 80;
     document.querySelector('.commentText').focus();
 
-    let inlineCancel = document.querySelector('.inline-canecl');
+    let inlineCancel = document.querySelector('.inline-cancel');
     let commentToolTip = document.querySelector('.inline-comment');
 
     inlineCancel.addEventListener('click',function(){ 
