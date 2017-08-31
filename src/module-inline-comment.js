@@ -53,8 +53,10 @@ class InlineComment {
 
 function checkDialogExist(quill){
     let commentToolTip = document.getElementById("inline-comment");
+    let commentMask = document.getElementById("inline-comment-mask");
     if (commentToolTip) {
         commentToolTip.remove();
+        commentMask.remove();
     }
     else{
         createCommentDialog(quill);
@@ -68,14 +70,24 @@ function createCommentDialog(quill) {
         return;
     }
     const atSignBounds = quill.getBounds(range.index);
+    let containerMask = document.createElement('div');
+    containerMask.id="inline-comment-mask";
+    containerMask.style.width   = "100%";
+    containerMask.style.height   = "100%";
+    containerMask.style.top   = "0px";
+    containerMask.style.position   = "fixed";
+    containerMask.style.display   = "block";
+
     let container  = document.createElement('div');
     container.id =  'inline-comment';
     container.classList.add('inline-comment');
     quill.container.appendChild(container);
+    quill.container.appendChild(containerMask);
     container.style.position   = "absolute";
     container.innerHTML = '<textarea class="commentText" placeholder="Type your comment"></textarea><div class="inline-comment-bottom"><span class="inline-send">Send</span> <span class="inline-canecl">Cancel</span></div>';
     container.style.left = (atSignBounds.left)+ "px";
     container.style.top = 10 + atSignBounds.top + atSignBounds.height + "px";
+    container.style.zIndex = 80;
     document.querySelector('.commentText').focus();
 
     let inlineCancel = document.querySelector('.inline-canecl');
@@ -83,6 +95,7 @@ function createCommentDialog(quill) {
 
     inlineCancel.addEventListener('click',function(){ 
         commentToolTip.style.display    = "none";
+        containerMask.style.display     = "none";
     });
 
     let inlineSend = document.querySelector('.inline-send');
@@ -100,6 +113,7 @@ function createCommentDialog(quill) {
             commentObj.resolved= commentStatus;
         }
         commentToolTip.remove();
+        containerMask.remove();
         quill.format('comment', commentObj);
     });
     

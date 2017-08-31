@@ -24,25 +24,25 @@
             margin-top: 15px;
             text-align: right;
           }
-          .annotation{
-            background: #ff0;
+          #quill-editor{
+            font-size: 16px;
           }
         </style>
     </head>
     <body>
         <div class="container" style="position:relative;">
             <h2>Editor</h2>
-            <div id="quill-editor" style="max-height: 300px;"></div>
+            <div id="quill-editor" style="max-height: 200px;"></div>
         </div>
         
         <div class="container">
             <h2>Debug</h2>
             <div style="margin:20px 0px; display:flex;">
                 <textarea id="output_delta"
-                    style="width:100%; min-height:300px; border: 1px solid lightgray; flex-basis:50%;"></textarea>
+                    style="width:100%; min-height:180px; border: 1px solid lightgray; flex-basis:50%;"></textarea>
 
                 <textarea id="output_html"
-                    style="width:100%; min-height:300px; border: 1px solid lightgray; flex-basis:50%;"></textarea>
+                    style="width:100%; min-height:180px; border: 1px solid lightgray; flex-basis:50%;"></textarea>
             </div>
         </div>
         <script src="../node_modules/quill/dist/quill.js"></script>
@@ -76,7 +76,7 @@
               placeholder: 'Compose an epic...',
               theme: 'snow',
           });
-        var content = '<p>You can learn, have, or be anything if you are <span class="annotation" data-comment="willing" data-id="1" data-resolved="resolved">willing</span> to</p>';
+        var content = '<h3>An analysis on&nbsp;pattern</h3><p>Adoption of the layered pattern may misguide and lead to an anti pattern called&nbsp;<strong><em>“Architecture sinkhole anti-pattern”</em></strong>&nbsp;which demonstrate having layers that do not perform any logic, yet add the communication overhead. Thus the layers must be designed in a manner that performs a specific task that compensates the communication overhead and maintainability of the overall system.</p><p><br></p><h4>Pattern Testability</h4><p>This is higher due to the layered nature. Each layer can be tested individually by passing dummy messages and having dummy interfaces to demonstrate immediate layers.</p><p><br></p><h4>Performance and scalability</h4><p>This could be low due to having the communication overhead. This might require conversion of message types and etc. Adding more layers is not a choice when it comes to scalability. The pattern will not scale infinitely.</p>';
         quill.pasteHTML(content);
         setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
         setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
