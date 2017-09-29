@@ -84,13 +84,20 @@ function createCommentDialog(quill) {
     quill.container.appendChild(container);
     quill.container.appendChild(containerMask);
     container.style.position   = "absolute";
-    container.innerHTML = '<textarea class="commentText" placeholder="Type your comment"></textarea><div class="inline-comment-bottom"><span class="inline-send">Send</span> <span class="inline-canecl">Cancel</span></div>';
-    container.style.left = (atSignBounds.left)+ "px";
+    container.innerHTML = '<textarea class="commentText" placeholder="Type your comment"></textarea><div class="inline-comment-bottom"><span class="inline-cancel">Cancel</span> <span class="inline-send">Send</span> </div>';
+    
+
+    container.style.left = (atSignBounds.left - 150)+ "px";
+
+    if (atSignBounds.left + 250 < quill.container.clientWidth) {
+        container.style.left = (atSignBounds.left)+ "px";
+    }
+
     container.style.top = 10 + atSignBounds.top + atSignBounds.height + "px";
     container.style.zIndex = 80;
     document.querySelector('.commentText').focus();
 
-    let inlineCancel = document.querySelector('.inline-canecl');
+    let inlineCancel = document.querySelector('.inline-cancel');
     let commentToolTip = document.querySelector('.inline-comment');
 
     inlineCancel.addEventListener('click',function(){ 
