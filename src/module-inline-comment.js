@@ -87,7 +87,7 @@ function createCommentDialog(quill) {
     container.innerHTML = '<textarea class="commentText" placeholder="Type your comment"></textarea><div class="inline-comment-bottom"><span class="inline-cancel">Cancel</span> <span class="inline-send">Send</span> </div>';
     
 
-    container.style.left = (atSignBounds.left - 220)+ "px";
+    container.style.left = (atSignBounds.left - 250)+ "px";
 
     if (atSignBounds.left + 250 < quill.container.clientWidth) {
         container.style.left = (atSignBounds.left)+ "px";
