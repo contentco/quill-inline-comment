@@ -11,7 +11,7 @@ const config = {
         filename: 'quill-inline-comment.js'
     },
     devServer: {
-      contentBase: path.join(__dirname, "dist"),
+      contentBase: path.join(__dirname),
       compress: true,
       port: 9000
     },
@@ -24,7 +24,7 @@ const config = {
                     loader: 'css-loader',
                     options: {
                         minimize: true || {/* CSSNano Options */}
-                    } 
+                    }
                 }, {
                     loader: 'sass-loader',
                 }]
@@ -43,13 +43,13 @@ const config = {
                 }
             }
         },
-        { 
-            test: /\.png$/, 
-            loader: "file-loader" 
+        {
+            test: /\.png$/,
+            loader: "file-loader"
         },
-        { 
-                test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
-                loader: 'url-loader?limit=100000' 
+        {
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+                loader: 'url-loader?limit=100000'
         }
         ]
     },

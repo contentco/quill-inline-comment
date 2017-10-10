@@ -77,7 +77,7 @@
               placeholder: 'Compose an epic...',
               theme: 'snow',
           });
-        
+
         setInterval( function() { document.getElementById("output_delta").value=JSON.stringify(quill.editor.getDelta()) }, 500);
         setInterval( function() { document.getElementById("output_html").value=quill.root.innerHTML }, 500);
         </script>

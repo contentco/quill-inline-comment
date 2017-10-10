@@ -30,15 +30,37 @@ Quill.register({
 });
 
 
+class GrammlyBlot extends Inline {
+    static create(commentText) {
+        const node = super.create();
+
+        return node;
+    }
+    static formats(node) {
+        return node.dataset;
+    }
+    format(name, value) {
+        super.format(name, value);
+    }
+}
+
+GrammlyBlot.blotName = "grammer";
+GrammlyBlot.tagName = "SPAN";
+GrammlyBlot.className = "gr_";
+
+Quill.register({
+    'formats/grammer': GrammlyBlot
+});
+
 class InlineComment {
     constructor(quill){
         this.quill = quill;
         this.toolbar = quill.getModule('toolbar');
         if (typeof this.toolbar != 'undefined')
             this.toolbar.addHandler('comment', this.commentEventHanlder);
-        
+
         var commentBtns = document.getElementsByClassName('ql-comment');
-        if (commentBtns) { 
+        if (commentBtns) {
             [].slice.call( commentBtns ).forEach(function ( commentBtn ) {
                 commentBtn.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="18" height="16" viewBox="0 0 18 16"><g fill="none" fill-rule="evenodd"><path fill="#444" fill-rule="nonzero" d="M9.92 11H13c1.66 0 3-1.36 3-3V5c0-1.66-1.34-3-3-3H5C3.34 2 2 3.34 2 5v3c0 1.64 1.34 3 3 3h1.44l.63 1.88 2.85-1.9zM5 0h8c2.76 0 5 2.24 5 5v3c0 2.75-2.24 5-5 5h-2.47L7.1 15.26c-.47.3-1.1.2-1.4-.27-.05-.1-.08-.18-.1-.26L5 13c-2.76 0-5-2.25-5-5V5c0-2.76 2.24-5 5-5z"/><path stroke="#444" stroke-width="2" d="M5.37 5H13M5.37 8H10" stroke-linecap="round" stroke-linejoin="round"/></g></svg>';
             });
@@ -48,7 +70,7 @@ class InlineComment {
     commentEventHanlder() {
         let quill = this.quill;
         checkDialogExist(quill);
-    }  
+    }
 }
 
 function checkDialogExist(quill){
@@ -85,7 +107,7 @@ function createCommentDialog(quill) {
     quill.container.appendChild(containerMask);
     container.style.position   = "absolute";
     container.innerHTML = '<textarea class="commentText" placeholder="Type your comment"></textarea><div class="inline-comment-bottom"><span class="inline-cancel">Cancel</span> <span class="inline-send">Send</span> </div>';
-    
+
 
     container.style.left = (atSignBounds.left - 250)+ "px";
 
@@ -100,7 +122,7 @@ function createCommentDialog(quill) {
     let inlineCancel = document.querySelector('.inline-cancel');
     let commentToolTip = document.querySelector('.inline-comment');
 
-    inlineCancel.addEventListener('click',function(){ 
+    inlineCancel.addEventListener('click',function(){
         commentToolTip.style.display    = "none";
         containerMask.style.display     = "none";
     });
@@ -121,9 +143,10 @@ function createCommentDialog(quill) {
         }
         commentToolTip.remove();
         containerMask.remove();
+        //quill.format('comment', commentObj);
         quill.format('comment', commentObj);
     });
-    
+
 }
 
 Quill.register('modules/inline_comment', InlineComment);
